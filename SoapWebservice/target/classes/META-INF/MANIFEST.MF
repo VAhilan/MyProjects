@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: SoapWebservice
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: Thanja
+Implementation-Vendor-Id: com.mycase.ws
+Build-Jdk: 1.8.0_151
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/SoapWebservice
+Created-By: Maven Integration for Eclipse
+

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://mycase.ahilan.com"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	name="CustomerAgreementService"
+	targetNamespace="http://mycase.ahilan.com">
+	<wsdl:types>
+		<xsd:schema targetNamespace="http://mycase.ahilan.com">
+			<xsd:complexType name="customer">
+				<xsd:sequence>
+					<xsd:element name="personnr" type="xsd:string" />
+					<xsd:element name="customerID" type="xsd:string" />
+					<xsd:element name="name" type="xsd:string" />
+					<xsd:element name="address" type="xsd:string" />
+					<xsd:element name="Mobile" type="xsd:string" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="agreement">
+				<xsd:sequence>
+					<xsd:element name="customernr" type="xsd:string" />
+					<xsd:element name="agreementID" type="xsd:string" />
+					<xsd:element name="type" type="xsd:string" />
+					<xsd:element name="identifier" type="xsd:string" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="updateStatus">
+				<xsd:sequence>
+					<xsd:element name="customernr" type="xsd:string" />
+					<xsd:element name="agreementID" type="xsd:string" />
+					<xsd:element name="status" type="xsd:string" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="createCustomerRequest">
+				<xsd:sequence>
+					<xsd:element name="customer" type="tns:customer" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="createCustomerResponse">
+				<xsd:sequence>
+					<xsd:element name="customerID" type="xsd:string" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="createAgreementRequest">
+				<xsd:sequence>
+					<xsd:element name="agreement" type="tns:agreement" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="createAgreementResponse">
+				<xsd:sequence>
+					<xsd:element name="agreementID" type="xsd:string" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<!-- Status update -->
+			<xsd:complexType name="updateStatusRequest">
+				<xsd:sequence>
+					<xsd:element name="updateStatus"
+						type="tns:updateStatus" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="updateStatusResponse">
+				<xsd:sequence>
+					<xsd:element name="status" type="xsd:string" />
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:element name="createCustomerRequest"
+				type="tns:createCustomerRequest" />
+			<xsd:element name="createCustomerResponse"
+				type="tns:createCustomerResponse" />
+			<xsd:element name="createAgreementRequest"
+				type="tns:createAgreementRequest" />
+			<xsd:element name="createAgreementResponse"
+				type="tns:createAgreementResponse" />
+			<xsd:element name="updateStatusRequest"
+				type="tns:updateStatusRequest" />
+			<xsd:element name="updateStatusResponse"
+				type="tns:updateStatusResponse" />
+		</xsd:schema>
+	</wsdl:types>
+
+	<wsdl:message name="createCustomerRequest">
+		<wsdl:part element="tns:createCustomerRequest"
+			name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="createCustomerResponse">
+		<wsdl:part element="tns:createCustomerResponse"
+			name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="createAgreementRequest">
+		<wsdl:part element="tns:createAgreementRequest"
+			name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="createAgreementResponse">
+		<wsdl:part element="tns:createAgreementResponse"
+			name="parameters" />
+	</wsdl:message>
+
+	<!-- Status update -->
+	<wsdl:message name="updateStatusRequest">
+		<wsdl:part element="tns:updateStatusRequest"
+			name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="updateStatusResponse">
+		<wsdl:part element="tns:updateStatusResponse"
+			name="parameters" />
+	</wsdl:message>
+
+
+	<wsdl:portType name="CustomerAgreementPortType">
+		<wsdl:operation name="createCustomer">
+			<wsdl:input message="tns:createCustomerRequest"
+				name="createCustomerRequest" />
+			<wsdl:output message="tns:createCustomerResponse"
+				name="createCustomerResponse" />
+		</wsdl:operation>
+		<wsdl:operation name="createAgreement">
+			<wsdl:input message="tns:createAgreementRequest"
+				name="createAgreementRequest" />
+			<wsdl:output message="tns:createAgreementResponse"
+				name="createAgreementResponse" />
+		</wsdl:operation>
+		<!-- Status update -->
+		<wsdl:operation name="updateStatus">
+			<wsdl:input message="tns:updateStatusRequest"
+				name="updateStatusRequest" />
+			<wsdl:output message="tns:updateStatusResponse"
+				name="updateStatusResponse" />
+		</wsdl:operation>
+	</wsdl:portType>
+
+	<wsdl:binding name="CustomerAgreementServiceSoapBinding"
+		type="tns:CustomerAgreementPortType">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="createCustomer">
+			<soap:operation
+				soapAction="http://mycase.ahilan.com/createCustomer" />
+			<wsdl:input name="createCustomerRequest">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="createCustomerResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="createAgreement">
+			<soap:operation
+				soapAction="http://mycase.ahilan.com/createAgreement" />
+			<wsdl:input name="createAgreementRequest">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="createAgreementResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<!-- Status update -->
+		<wsdl:operation name="updateStatus">
+			<soap:operation
+				soapAction="http://mycase.ahilan.com/updateStatus" />
+			<wsdl:input name="updateStatusRequest">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="updateStatusResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="CustomerAgreement">
+		<wsdl:port binding="tns:CustomerAgreementServiceSoapBinding"
+			name="CustomerAgreementPortType">
+			<soap:address
+				location="http://localhost:8080/wsdlfirstws/services/customerAgreementServices" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>
